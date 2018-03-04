@@ -42,7 +42,7 @@ class m180212_145626_oxy_init extends Migration
             'created' => $this->integer()->notNull()->defaultValue(0),
             'updated' => $this->integer()->notNull()->defaultValue(0),
         ]);
-        $this->createTable('{{%object}}', [
+        $this->createTable('{{%expend}}', [
             'id' => $this->primaryKey(),
             'uid' => $this->integer()->notNull()->defaultValue(0),
             'contact' => $this->integer()->notNull()->defaultValue(0),
@@ -61,6 +61,6 @@ class m180212_145626_oxy_init extends Migration
         $this->dropTable('{{%project}}');
         $this->dropTable('{{%task}}');
         $this->dropTable('{{%contact}}');
-        $this->dropTable('{{%object}}');
+        $this->dropTable('{{%expend}}');
     }
 }

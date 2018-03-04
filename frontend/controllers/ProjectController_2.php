@@ -42,4 +42,22 @@ class ProjectController extends Controller {
         return json_encode($data);
     }
 
+    public function actionSet() {
+        $model = Project::findOne($_POST['key']);
+        if ($_POST['ac'] == '-1') {
+            $model->cash = $_POST['val'];
+            $model->updated = time();
+            $model->save();
+            return json_encode($model->cashValue);
+        } else {
+            $model->status = $_POST['ac'] ? : $model->status;
+            if ($model->status != $model::STATUS_LOST) {
+                $model->back += $_POST['val'];
+            }
+            $model->updated = time();
+            $model->save();
+            return json_encode($model->statusValue);
+        }
+    }
+
 }

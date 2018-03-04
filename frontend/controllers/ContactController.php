@@ -4,12 +4,12 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\Controller;
-use frontend\models\Project;
+use frontend\models\Contact;
 
 /**
  * Site controller
  */
-class ProjectController extends Controller {
+class ContactController extends Controller {
 
     /**
      * Displays homepage.
@@ -17,17 +17,16 @@ class ProjectController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $model = new Project();
+        $model = new Contact();
         return $this->render('index', [
             'model' => $model
         ]);
     }
 
     public function actionCreate() {
-        $model = new Project();
+        $model = new Contact();
         $model->attributes = $_POST;
         if ($model->validate()) {
-            $model->time = $model->time ? strtotime($model->time) : time();
             $model->created = time();
             $model->updated = time();
             $model->save();
@@ -36,7 +35,7 @@ class ProjectController extends Controller {
 
     public function actionLoad() {
         $data = [];
-        $model = new Project();
+        $model = new Contact();
         $model->attributes = $_POST;
         $data['html'] = $this->renderAjax('table', ['model' => $model]);
         return json_encode($data);
