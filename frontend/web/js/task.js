@@ -14,25 +14,19 @@ $(document).ready(function () {
 });
 
 function create() {
-    var type = $("#contact-type").val();
-    var name = $("#contact-name").val();
-    var phone = $("#contact-phone").val();
-    var remark = $("#contact-remark").val();
-    if (name && phone) {
+    var contact = $("#task-contact").val();
+    var time = $("#task-time").val();
+    if (contact) {
         $.ajax({
-            url: "/contact/create",
+            url: "/task/create",
             type: "POST",
             dataType: "json",
             data: {
-                "name": name,
-                "phone": phone,
-                "remark": remark,
-                "type": type
+                "contact": contact,
+                "time": time
             },
             success: function () {
-                $("#contact-name").val("");
-                $("#contact-phone").val("");
-                $("#contact-remark").val("");
+                $("#project-time").val("");
             }
         });
     } else {
@@ -41,13 +35,13 @@ function create() {
 }
 
 function load() {
-    var type = $("#contact-type").val();
+    var contact = $("#task-contact").val();
     $.ajax({
-        url: "/contact/load",
+        url: "/task/load",
         type: "POST",
         dataType: "json",
         data: {
-            "type": type
+            "contact": contact
         },
         success: function (data) {
             $("#common-table").html(data.html);

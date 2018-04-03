@@ -62,7 +62,7 @@ class Contact extends \yii\db\ActiveRecord
         return [
             '' => '选择类型',
             1 => '新人',
-            2 => '合作伙伴',
+            2 => '合作商',
         ];
     }
     

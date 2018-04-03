@@ -61,7 +61,7 @@ class Project extends \yii\db\ActiveRecord
     }
     
     public function getContacts() {
-        return ArrayHelper::merge(['' => '选择新人'], ArrayHelper::map(Contact::find()->all(), 'id', 'name'));
+        return ArrayHelper::merge(['' => '选择新人'], ArrayHelper::map(Contact::find()->where(['type' => 1])->all(), 'id', 'name'));
     }
 
     public function getDataProvider() {
@@ -79,11 +79,12 @@ class Project extends \yii\db\ActiveRecord
     public function getColumns() {
         return [
             [
-                'value' => 'id',
+                'value' => 'idValue',
                 'label' => 'ID',
+                'format' => 'raw'
             ],
             [
-                'value' => 'time',
+                'value' => 'timeValue',
                 'label' => '日期',
             ],
             [
@@ -104,6 +105,14 @@ class Project extends \yii\db\ActiveRecord
                 'label' => '利润',
             ],
         ];
+    }
+
+    public function getIdValue() {
+        return \yii\bootstrap\Html::a($this->id, '/task/index', ['product_id' => $this->id]);
+    }
+
+    public function getTimeValue() {
+        return date('Y-m-d', $this->time);
     }
 
     public function getContactModel() {

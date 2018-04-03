@@ -45,7 +45,6 @@ function load() {
         },
         success: function (data) {
             $("#common-table").html(data.html);
-            set();
         }
     });
 }
