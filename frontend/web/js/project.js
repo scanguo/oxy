@@ -26,7 +26,7 @@ function create() {
                 "time": time
             },
             success: function () {
-                $("#project-time").val("");
+                
             }
         });
     } else {
